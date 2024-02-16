@@ -20,33 +20,38 @@ from id3parse import ID3, TAG_HEADER_SIZE
 #     return bytearray()
 
 
+"""
+https://arca.live/b/twitchdev/48875066
+https://web.archive.org/save/https://arca-live.translate.goog/b/twitchdev/48875066?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp
+"""
 if __name__ == '__main__':
     streams = streamlink.streams("https://twitch.tv/btmc")
     audio_stream = streams.get("audio_only", None)
     assert audio_stream is not None
+
     with audio_stream.open() as stream_handle:
         buf = bytearray()
-        packet_corrupt = False
+        buffer_incomplete = False  # incomplete when not enough data is present to extract ID3 entry
         last_read_count = 0
         while True:
-            if not packet_corrupt and len(buf) > 0:
+            if not buffer_incomplete and len(buf) > 0:
                 cut_amount = 0
                 for byte_index in range(last_read_count, len(buf)):
                     if buf[byte_index] == 0x47:
                         cut_amount = byte_index
                 buf = buf[:-cut_amount]
-            packet_corrupt = False
+            buffer_incomplete = False
             tmp_data = stream_handle.read(16384)
             last_read_count = len(tmp_data)
             buf += tmp_data
-            a = ffmpeg.input("pipe:", f="mpegts")
-            b = a['d:0'].output("pipe:", f="data")
-            ffmpeg_id3_extract = b.run_async(pipe_stdin=True, pipe_stdout=True, quiet=True)
+            ffmpeg_id3_extract = (ffmpeg
+                                  .input("pipe:", f="mpegts")['d:0']
+                                  .output("pipe:", f="data")
+                                  .run_async(pipe_stdin=True, pipe_stdout=True, quiet=True))
             stdout, stderr = ffmpeg_id3_extract.communicate(input=buf)
 
-            stderr = stderr.decode('utf-8')
-            if "Packet corrupt" in stderr or 'matches no streams' in stderr:
-                packet_corrupt = True
+            if "Packet corrupt" in (stderr := stderr.decode('utf-8')) or 'matches no streams' in stderr:
+                buffer_incomplete = True
                 continue
 
             # decoded = ''.join(map(lambda ch: ch if ch in set(string.printable) else ".", stdout.decode("ascii")))
@@ -55,5 +60,5 @@ if __name__ == '__main__':
                 id3data = ID3.from_byte_array(stdout)
                 twitch_txxx_segment_meta = json.loads(id3data.find_frame_by_name("TXXX").raw_bytes[17:].decode('utf-8'))
                 print(f"[{datetime.datetime.now(tz=datetime.timezone.utc).isoformat()}] "
-                      f"{twitch_txxx_segment_meta}")
+                      f"stream timestamp: {datetime.timedelta(seconds=twitch_txxx_segment_meta['stream_offset'])}")
                 stdout = stdout[id3data.header.tag_size + TAG_HEADER_SIZE:]
