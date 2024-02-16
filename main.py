@@ -11,21 +11,6 @@ TS_PACKET_LENGTH = 188
 TS_SYNC_BYTE = 0x47
 
 
-# def cut_to_latest_packet_start(data: bytearray) -> bytearray:
-#     for i in range(len(data) - 1 - 3, -1, -1):  # -3 because TS packet header is 4 bytes
-#         if data[i] == "\x47":
-#             asc = data[i + 3] & 0x30
-#             if asc == 0x00:
-#                 # ASC of 0 is reserved for future use, meaning this is most likely not a TS packet header
-#                 continue
-#
-#             pid = data[i+1:i+3] & 0x1FFF
-#             if pid == 0x1FFF:
-#             print("found ")
-#         print(i)
-#     return bytearray()
-
-
 class SegmentWithMeta:
     def __init__(self, segment):
         self.segment = segment
@@ -91,19 +76,9 @@ if __name__ == '__main__':
     assert audio_stream is not None
 
     with audio_stream.open() as stream_handle:
-        segments_buffer = CircularSegmentBuffer()
+        segments_queue = CircularSegmentBuffer()
         segment_buffer = bytearray()
-        segment_incomplete = False  # incomplete when not enough data is present to extract ID3 entry
-        last_read_count = 0
         while True:
-            if not segment_incomplete and len(segment_buffer) > 0:
-                # cut_amount = 0
-                # for byte_index in range(last_read_count, len(segment_buffer)):
-                #     if segment_buffer[byte_index] == 0x47:
-                #         cut_amount = byte_index
-                # segment_buffer = segment_buffer[:-cut_amount]
-                pass
-            segment_incomplete = False
             ts_packet = stream_handle.read(TS_PACKET_LENGTH)
             if not ts_packet:
                 break
@@ -122,6 +97,6 @@ if __name__ == '__main__':
             program_id = ts_get_pid(ts_packet)
             if program_id == 0x0000:
                 if len(segment_buffer) > 0:
-                    segments_buffer.append(bytes(segment_buffer))
+                    segments_queue.append(bytes(segment_buffer))
                     segment_buffer.clear()
             segment_buffer += ts_packet
