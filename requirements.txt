@@ -1,0 +1,3 @@
+ffmpeg-python~=0.2.0
+streamlink~=6.5.1
+id3parse~=0.1.1
