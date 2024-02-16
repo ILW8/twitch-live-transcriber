@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://arca.live/b/twitchdev/48875066 -->
+<html lang="ko" class="theme-dark width-1300 navbar-scroll" style="font-size:15px "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>twitch ts 파일 분석 - 트위치개발 채널</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5.0">
+<meta name="theme-color" content="#4f5464">
+<meta name="author" content="바바는바바야">
+<meta name="title" content="twitch ts 파일 분석 - 트위치개발 채널">
+<meta name="description" content="※ HxDts 파일을 바이너리 편집기인 HxD 로 열어보면 위와 같은 데이터를 확인 할 수 있다. 위의 사진을 예시로 들자면 ts파일에는 ts파일의 생성시간 (2022-04-10T17:03:29) 과 몇번째 인덱스(">
+<meta property="og:type" content="website">
+<meta property="og:title" content="twitch ts 파일 분석 - 트위치개발 채널">
+<meta property="og:description" content="※ HxDts 파일을 바이너리 편집기인 HxD 로 열어보면 위와 같은 데이터를 확인 할 수 있다. 위의 사진을 예시로 들자면 ts파일에는 ts파일의 생성시간 (2022-04-10T17:03:29) 과 몇번째 인덱스(">
+<meta property="og:image" content="//ac.namu.la/20220420sac/bd2859b4d608f0a90f1c421ccfe4432969c4826d0d43492693a4bddd2531aa64.png?expires=1708083451&amp;key=pDTYtVN_chmfWEdWI_hKcw">
+<meta property="og:url" content="https://arca.live/b/twitchdev/48875066">
+<meta property="og:site_name" content="Arcalive">
+
+
+
+<link rel="apple-touch-icon" href="https://arca.live/static/apple-icon.png?t=aada07e8beef28e0a463881ad5d82b4840d31516">
+<link rel="manifest" href="https://arca.live/manifest.json?t=aada07e8beef28e0a463881ad5d82b4840d31516">
+<link rel="canonical" href="https://arca.live/b/twitchdev/48875066">
+<link rel="stylesheet" as="style" href="./twitch ts 파일 분석 - 트위치개발 채널_files/common.css">
+<script src="./twitch ts 파일 분석 - 트위치개발 채널_files/en.min.js" type="text/javascript"></script>
+<script src="./twitch ts 파일 분석 - 트위치개발 채널_files/common.js" type="text/javascript"></script>
+<script type="text/javascript">window.LiveConfig={"country":"GB","domain":"arca.live","allow_sensitive_media":false,"userad_report_list":["태그 미부착","혐오","저격","모금","공약"],"CACHE_KEY":"?t\u003Daada07e8beef28e0a463881ad5d82b4840d31516","recaptcha":{"siteKey":"6LcDuIwUAAAAAABqGMfC8KCTje\u002DxWbQu9bhvIO3K"},"adTags":0,"needCaptcha":true,"permission":{"comment":true,"rate":true},"oope":{"lp":{"itempage3.auction.co.kr":"auction","mitem.auction.co.kr":"auction","mobile.auction.co.kr":"auction","mobile.gmarket.co.kr":"gmarket","auction.kr":"auction","rpp.auction.co.kr":"auction","item.gmarket.co.kr":"gmarket","rpp.gmarket.co.kr":"gmarket","mitem.gmarket.co.kr":"gmarket","gmkt.kr":"gmarket","www.ssg.com":"emart","event.ssg.com":"emart","emarkt.ssg.com":"emart","ssg.com":"emart","m.ssg.com":"emart","emart.ssg.com":"emart","department.ssg.com":"emart","shinsegaemall.ssg.com":"emart","www.lotteon.com":"lotteon","s.lotteon.com":"lotteon","lotteon.com":"lotteon","front.wemakeprice.com":"makeprice","mw.wemakeprice.com":"makeprice","www.e\u002Dhimart.co.kr":"himart","m.e\u002Dhimart.co.kr":"himart","s.click.aliexpress.com":"aliexpress","ko.aliexpress.com":"aliexpress","aliexpress.com":"aliexpress","a.aliexpress.com":"aliexpress","www.aliexpress.com":"aliexpress","11st.co.kr":"11st","www.11st.co.kr":"11st","m.11st.co.kr":"11st","phone.11st.co.kr":"11st","coupang.com":"coupang","m.coupang.com":"coupang","www.coupang.com":"coupang","lotteimall.com":"woori","www.lotteimall.com":"woori","thirtymall.com":"thirtymall","m.thirtymall.com":"thirtymall","www.thirtymall.com":"thirtymall","front.homeplus.co.kr":"homeplus2","mfront.homeplus.co.kr":"homeplus2"},"rl":{},"ol":{},"white":["www.xbox.com","www.cultureland.co.kr","store.steampowered.com","shoppinglive.kakao.com","www.nike.com","pc.tmon.co.kr","www.tmon.co.kr","store.epicgames.com","www.vogoplay.com","vogoplay.com","club.gmarket.co.kr","member.ssg.com","store.playstation.com","www.musinsa.com","product.shoppinglive.naver.com","smartstore.naver.com","onesto.re","prod.danawa.com","www.amazon.com","shopping.interpark.com","24do.co.kr","store.houseapp.co.kr","m.brand.naver.com","brand.naver.com","www.hiver.co.kr","shoppinglive.naver.com","www.endclothing.com","shopping.naver.com","gift.kakao.com","store.kakao.com","plan.11st.co.kr","search.shopping.naver.com","www.qoo10.com","www.testvalley.kr","product.29cm.co.kr","shop.10000recipe.com","ozip.me","ohou.se","m.smartstore.naver.com","mall.epost.go.kr","mobile.tmon.co.kr","www.dongwonmall.com","www.compuzone.co.kr","artifact.arca.live","www.kurly.com","www.gsshop.com","www.grip.show","www.cjthemarket.com","promo.11st.co.kr","adcr.naver.com","grip.show","www.ocokorea.com","enuri.com","store\u002Dkr.uniqlo.com","www.greenmangaming.com"],"black":[]}};</script>
+<script src="chrome-extension://nngceckbapebfimnlniiiahkandclblb/content/fido2/page-script.js" id="bw-fido2-page-script"></script><script src="./twitch ts 파일 분석 - 트위치개발 채널_files/js" async=""></script><link id="dynamic-favicon" rel="shortcut icon" href="https://arca.live/static/favicon.ico?t=aada07e8beef28e0a463881ad5d82b4840d31516"></head>
+<body class="body" style="">
+<div id="top"></div>
+<div class="root-container">
+<div class="navbar-wrapper">
+<nav class="navbar navbar-dark navbar-expand">
+<a class="navbar-brand" href="https://arca.live/" title="Arcalive"><svg viewBox="0 0 1 1"><use width="100%" height="100%" href="/static/assets/images/arca-logo-circle-web.svg?t=aada07e8beef28e0a463881ad5d82b4840d31516#arca-logo"></use></svg></a>
+<ul class="nav navbar-nav">
+<li class="nav-item dropdown">
+<a aria-expanded="true" class="nav-link dropdown-toggle" href="https://arca.live/b/twitchdev/48875066#" title="Subscription Channel" data-toggle="dropdown" aria-haspopup="true">
+Subscribe<span class="d-none d-md-inline"> </span><span class="d-none d-md-inline">Channel</span>
+</a>
+<div class="dropdown-menu left">
+<a class="dropdown-item" href="https://arca.live/b/twitchdev/48875066#">There are no channels you are subscribed to.</a>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="true" class="nav-link dropdown-toggle" href="https://arca.live/b/twitchdev/48875066#" title="Channel" data-toggle="dropdown" aria-haspopup="true">
+Main<span class="d-none d-md-inline"> </span><span class="d-none d-md-inline">Channel</span>
+</a>
+<div class="dropdown-menu left">
+<a class="dropdown-item" href="https://arca.live/b/live">Best live</a>
+<a class="dropdown-item" href="https://arca.live/b/singbung?mode=best">유머 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/hotdeal">Hot Deals</a>
+<a class="dropdown-item" href="https://arca.live/b/headline">ideal article collection</a>
+<a class="dropdown-item" href="https://arca.live/b/replay">Comprehensive deliberation target</a>
+<a class="dropdown-item" href="https://arca.live/b/breaking">Comprehensive breaking news</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="https://arca.live/b/notice">Notices</a>
+<a class="dropdown-item" href="https://arca.live/b/request">Inquiry Board</a>
+<a class="dropdown-item" href="https://arca.live/b/whyiblocked">Channel inquiry board</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="https://arca.live/b/bluearchive">블루 아카이브 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/genshin">원신 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/dunfa">던전앤파이터 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/lostark">로스트아크 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/hkstarrail">붕괴 스타레일 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/trickcal">트릭컬 RE:VIVE 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/rogersfu">종합축구 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/holopro">홀로라이브 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/epic7">에픽세븐 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/arknights">명일방주 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/nikketgv">승리의 여신 니케 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/lobotomycoperation">로보토미 코퍼레이션 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/hk3rd">붕괴3rd 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/yugioh">유희왕 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/bser">이터널 리턴 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/maplestory">메이플스토리 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/counterside">카운터사이드 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/mabi">마비노기 블로니 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/azurlane">벽람항로 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/gaijin">가이진 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/airsoft2077">에어소프트 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/fightgame">격투게임 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/arcalivebreverse">리버스 1999 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/tullius">툴리우스 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/commission">커미션 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/punigray">퍼니싱 채널</a>
+<a class="dropdown-item" href="https://arca.live/b/novelchannel">장르소설 채널</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="https://arca.live/channels">View More</a>
+</div>
+</li>
+<li class="nav-item nav-channel-search-wrapper d-none d-sm-block">
+<form id="siteSearchForm" method="get" action="https://arca.live/b/breaking">
+<div class="nav-channel-search-input-wrapper">
+<span class="icon ion-search"></span>
+<input type="search" name="keyword" class="form-control textInput" autocomplete="off" placeholder="Find" value="">
+</div>
+</form>
+<div class="nav-channel-search-result d-none">
+<div class="spinner spinner-border spinner-border-sm m-3" role="status">
+<span class="sr-only">Loading...</span>
+</div>
+<div class="dropdown-divider"></div>
+<div class="keyword-search-item"></div>
+<div class="close-button-wrapper">
+<button class="btn btn-close btn-transparent">Close</button>
+</div>
+</div>
+</li>
+<li class="nav-channel-mobile-search-wrapper d-block d-sm-none nav-item">
+<a class="nav-link" id="siteSearchBtn"><span class="icon ion-search"></span> Search</a>
+<form id="siteMobileSearchForm" class="nav-channel-search-input-wrapper" method="get" action="https://arca.live/b/breaking">
+<span class="icon ion-search"></span>
+<input type="search" name="keyword" class="form-control textInput" autocomplete="off" placeholder="Find" value="">
+</form>
+<div class="nav-channel-search-result d-none d-sm-none">
+<div class="spinner spinner-border spinner-border-sm m-3" role="status">
+<span class="sr-only">Loading...</span>
+</div>
+<div class="keyword-search-item"></div>
+<div class="close-button-wrapper">
+<button class="btn btn-close btn-transparent">Close</button>
+</div>
+</div>
+</li>
+</ul>
+<ul class="nav navbar-nav ml-auto ml-lg-0">
+<li class="nav-item d-none d-sm-block">
+<a class="nav-link" href="https://namu.news/">
+<span>News</span>
+</a>
+</li>
+<li class="nav-item d-block">
+<a class="nav-link" href="https://namu.wiki/">
+<span>Wiki</span>
+</a>
+</li>
+<li class="nav-item dropdown user-menu-parent">
+<a class="nav-link user-menu-link" href="https://arca.live/u/login?goto=%2Fb%2Ftwitchdev%2F48875066" title="Login">
+<span class="d-none d-sm-inline navbar-top-margin"></span>
+<span class="ion-person"></span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+<div class="topbar-area d-lg-none"><span class="badge badge-success">뉴스</span><span class="topbar-text"></span></div>
+<div class="content-wrapper clearfix">
+<div class="sidebar left-ad-area">
+<div class="ad small-ad" id="Kt6gbCBrHQpObQFW" data-ad-t="Kt6gbCBrHQpObQFW" data-ad-b="t"><img src="./twitch ts 파일 분석 - 트위치개발 채널_files/empty_ad_sidebar_small.svg" width="100%" height="100%"></div>
+</div>
+<article class="containe-fluid board-article">
+<div class="article-view">
+<div class="board-title">
+<div class="left">
+<a class="channel-icon-link" href="https://arca.live/b/twitchdev" aria-label="Go to channel">
+<img class="channel-icon" src="./twitch ts 파일 분석 - 트위치개발 채널_files/50bdf1c287d49baef992fba005689b38a18b3e226df47ac83c3f10397759e63a.png" alt="Channel icon">
+</a>
+</div>
+<div class="right">
+<div class="head">
+<a href="https://arca.live/b/twitchdev" class="title" data-channel-name="트위치개발 채널">
+<span title="트위치개발 채널">트위치개발 채널</span>
+</a><a href="https://arca.live/b/twitchdev/48875066#" class="info-btn" role="button">
+<span class="ion-ios-information-outline"></span>
+</a>
+
+<div class="buttons">
+<a href="https://arca.live/b/twitchdev/notificate?value=1&amp;_csrf=Kkv6opbX-kNvoAo3d5WaFzRemZG0AitdKEK4" class="btn btn-sm notificate-btn">
+<span class="notificate">
+<span class="ion-android-notifications-none icon"></span>
+<span class="text">알림</span>
+</span>
+<span class="notificated">
+<span class="ion-android-notifications icon"></span>
+<span class="text">알림 중</span>
+</span>
+<span class="unnotificate">
+<span class="ion-android-notifications-off icon"></span>
+<span class="text">알림 취소</span>
+</span>
+</a>
+<a href="https://arca.live/b/twitchdev/subscribe?value=1&amp;_csrf=Kkv6opbX-kNvoAo3d5WaFzRemZG0AitdKEK4" class="btn btn-sm subscribe-btn">
+<span class="subscribe">
+<span class="ion-plus-round icon"></span>
+<span class="text">Subscribe</span>
+</span>
+<span class="subscribed">
+<span class="ion-checkmark icon"></span>
+<span class="text">Subscribed</span>
+</span>
+<span class="unsubscribe">
+<span class="ion-close icon"></span>
+<span class="text">Unsubscribe</span>
+</span>
+</a>
+</div>
+</div>
+<div class="description">
+<div>
+<span>168 subscribers</span>
+<span class="sep"></span>
+<span>알림수신 13명</span>
+<span class="sep"></span>
+<span class="user-info">
+<a href="https://arca.live/u/@%EB%B0%94%EB%B0%94%EB%8A%94%EB%B0%94%EB%B0%94%EC%95%BC">@바바는바바야</a>
+<span class="ion-checkmark-circled user-icon user-manager" title="Manager"></span>
+</span>
+</div>
+<div>
+트위치 개발
+</div>
+</div>
+</div>
+</div>
+<div class="article-wrapper">
+<div class="edit-menu">
+</div>
+<div class="article-head">
+<div class="title-row">
+<div class="title">
+<span class="badge badge-success category-badge">개발</span>
+twitch ts 파일 분석
+</div>
+</div>
+<div class="info-row">
+<div class="member-info">
+<span class="user-info"><a href="https://arca.live/u/@%EB%B0%94%EB%B0%94%EB%8A%94%EB%B0%94%EB%B0%94%EC%95%BC" data-filter="바바는바바야">바바는바바야</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span>
+<div class="avatar">
+<img src="./twitch ts 파일 분석 - 트위치개발 채널_files/21535c3c0ec762da1c2bec72346305e8e4547e9211b3aca0be97d340da41ac8b.png" loading="lazy">
+</div>
+</div>
+<div class="article-info article-info-section">
+<span class="head">Like</span>
+<span class="body" style="color: #2356FF;">4</span>
+<span class="sep"></span>
+<span class="head">Dislike</span>
+<span class="body" style="color: #BF3131;">0</span>
+<span class="sep"></span>
+<span class="head">Comment</span>
+<span class="body">10</span>
+<span class="sep"></span>
+<span class="head">Views</span>
+<span class="body">930</span>
+<span class="date">
+<span class="sep"></span>
+<span class="head">Uploaded date</span>
+<span class="body"><time datetime="2022-04-20T17:41:51.000Z" data-format="Y-m-d H:i:s">2022-04-20 18:41:51</time></span>
+</span>
+<span class="date">
+<span class="sep"></span>
+<span class="head">Updated date</span>
+<span class="body"><time datetime="2022-08-01T17:54:37.000Z" data-format="Y-m-d H:i:s">2022-08-01 18:54:37</time></span>
+</span>
+</div>
+</div>
+</div>
+<div class="article-link"><a href="https://arca.live/b/twitchdev/48875066" title="게시물 주소">https://arca.live/b/twitchdev/48875066</a><i class="ion-android-share-alt ml-1" style="cursor: pointer;"></i></div>
+<div class="article-body">
+<div class="fr-view article-content"><p><strong>※ HxD</strong></p><p><br></p><table style="width:57%;margin-right:calc(43%)"><tbody><tr><td style="width:100.0000%"><a href="https://ac.namu.la/20220420sac/bd2859b4d608f0a90f1c421ccfe4432969c4826d0d43492693a4bddd2531aa64.png?expires=1708083451&amp;key=pDTYtVN_chmfWEdWI_hKcw&amp;type=orig" target="_blank"><img src="./twitch ts 파일 분석 - 트위치개발 채널_files/bd2859b4d608f0a90f1c421ccfe4432969c4826d0d43492693a4bddd2531aa64.png" width="633" height="879" loading="lazy"></a><br></td></tr></tbody></table><p>ts 파일을 바이너리 편집기인 HxD 로 열어보면 위와 같은 데이터를 확인 할 수 있다.&nbsp;</p><p>위의 사진을 예시로 들자면 ts파일에는 ts파일의 &nbsp;생성시간 (2022-04-10T17:03:29) 과 몇번째 인덱스(index-0000004815)인지의 등의 정보를 포함하고있다.</p><p><br></p><p><strong>※ ts 패킷 크기</strong></p><p><br></p><table style="width:94%;margin-right:calc(6%)"><tbody><tr><td style="width:100.0000%"><a href="https://ac.namu.la/20220420sac2/8d5db425df3c5b6468788130c500507b41b682d457bf40d03746583dffcaa27d.png?expires=1708083451&amp;key=xQzN9RfBXPcn5BBaWTY7eQ&amp;type=orig" target="_blank"><img src="./twitch ts 파일 분석 - 트위치개발 채널_files/8d5db425df3c5b6468788130c500507b41b682d457bf40d03746583dffcaa27d.png" width="1917" height="661" loading="lazy"></a></td></tr></tbody></table><p>ts파일은 188바이트의 고정 크기의 패킷으로 이루어져있는데 188바이트로 줄바꿈을 해보면 위와 같은 데이터를 확인할 수 있다.</p><p>HxD에서 188바이트로 줄바꿈을 한뒤 첫 바이트를 확인해보면 0x47 로 시작하는 데이터들을 확인할 수 있다.</p><p><br></p><p><strong>※ ts 패킷 구조</strong></p><p><br></p><p>ts 패킷의 첫 4바이트 (=32비트) 에는 ts을 구성하는 주요 값들을 가지고 있다. (<strong>볼드</strong> 처리된 부분만 알아도 됩니다.)</p><p><a href="https://ac.namu.la/20220420sac2/ff2786cc6a4657794b83d17d0dcb758f6be799cfef52ed18c552055c1d2f203d.png?expires=1708083451&amp;key=oWoq2R9B2X5mqHbh13cCEA&amp;type=orig" target="_blank"><img src="./twitch ts 파일 분석 - 트위치개발 채널_files/ff2786cc6a4657794b83d17d0dcb758f6be799cfef52ed18c552055c1d2f203d.png" width="785" height="60" loading="lazy"></a>&nbsp;(8bits=1byte)</p><p><strong>첫 1바이트(8비트) 는 SyncByte 로 ts 파일이라면 항상 고정적으로 0x47 의 값을 갖는다.</strong></p><p>그 다음 1비트는 Transport Error Indicator (전송오류 표시기) 로 정상이라면 0, 에러라면 1의 값을 갖는다.</p><p>그 다음 1비트는 Payload Unit Start Indicator (페이로드 유닛 시작 표시기) 로 1이라면 PES의 시작을 나타낸다.</p><p>그 다음 1비트는 Transport Priority indicator (전송 우선 순위) 로 패킷들중 같은 PID가 존재한다면 1의 값을 갖는 패킷이 우선순위가 된다.</p><p><strong>그 다음 13비트는 PID (패킷 아이디) 를 의미한다. 트위치에서 사용하는 PID는 아래서 자세히 설명할 것이다.</strong></p><p>그 다음 2비트는 Transport scrambling control (스크램블 제어) 로 스크램블의 사용 유무와 어떻게 사용할지의 정보를 담고있다.</p><p>그 다음 2비트는 Adaptation Field Control (유효필드 제어) 로 유효필드의 유무와 페이로드의 유무에 관한 정보를 가지고 있다.</p><p>그 다음 4비트는 Continuity counter (연속 카운터) 로 같은 PID에서 값이 1씩 증가하는 특성을 갖는다.</p><p><strong>그 다음은 184바이트의 PES (payload) 에는 PID에 맞는 각종 데이터들을 가지고 있다. (ex. 메타데이터, 영상, 음성 정보)&nbsp;</strong></p><p><br></p><p><strong>※ PID (패킷아이디)</strong></p><p><br></p><p>트위치에서 사용하는 패킷ID 를 살펴보자면 다음과 같다.</p><p>- <strong>0</strong> : 다중화되어있는 프로그램 정보를 담고 있는 PAT (Program Assocation Table) 패킷</p><p><span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">-&nbsp;</span>4096 : HLS (HTTP Live Streaming)를 위한 timed metadata 패킷</p><p><span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">-&nbsp;</span><strong>258</strong> : <strong>트위치의 메타데이터 패킷</strong></p><p><span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">-&nbsp;</span>257 : H264 <strong>비디오</strong><strong>&nbsp;패킷</strong></p><p><span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">-&nbsp;</span>256 : AAC <strong>오디오</strong><strong>&nbsp;패킷</strong></p><p><br></p><p><strong>※ 패킷 단위의 분석과 응용</strong></p><p><br></p><p>트위치 ts 파일을 패킷단위로 분석해보면 첫 pid는 0으로 시작한다.</p><p>그리고 4096 한번 이후 258 이 2~3번 정도 이후 257과 256이 섞여있는 구조로 되어있다.</p><table style="width:130%;margin-right:calc(-30%)"><tbody><tr><td style="width:100.0000%">GA7@��½£„€#¯ß¡=ID3����TRCK�����4815�TDEN�����2022-04-10T17:03:29�TDTG�����2022-04-10T17:03:29�TOFN�����index-0000004815.ts�TSSE�����libavtwitch: cfc485�TXXX��{��segment<br></td></tr><tr><td style="width:100.0000%">Gmetadata�{"broadc_r":0,"broadc_s":1,"cmd":"ld_lat_data","ingest_r":1649610209481,"ingest_s":3,"segment_loudness":-45.462235425105561,"stream_loudness":-14.954593163267479,"stream_offse<br></td></tr><tr><td style="width:100.0000%">G9|�ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿt":20063,"transc_r":1649610209562,"transc_s":1649610209619}<br></td></tr></tbody></table><p>스트림 시간, index 번호와 같은 데이터를 담고 있는 부분이 PID가 258 인 부분이다.&nbsp;</p><p><br></p><p>실제로 다시보기를 다운받을때 ts파일을 바이너리로 합치게되는데 HxD로 분석해보면</p><p><span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">(0-2096-258*3-(257과256반복)) -</span> <span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">(0-2096-258<span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">*3</span>-(257과256반복)) -</span> <span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">(0-2096-258<span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">*3</span>-(257과256반복))&nbsp;</span><span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">- ...</span></p><p>이러한 형태로 반복되는 구조를 볼 수 있다.</p><p><br></p><p><strong>일반적으로 실시간 스트림 ts파일은 2초 단위, 다시보기 ts파일은 10초단위로 구성되어있는데,&nbsp;</strong><strong>10초짜리 다시보기에는 2초단위의 ts파일 5개가 바이너리로 결합되어있는 구조이다.&nbsp;</strong>(가끔 스트림이랑 다시보기 ts 파일이 일반적이지 않은 경우도 있는데 kuiki771 같은 경우 스트림 ts 파일이 가 약 4.167초, 다시보기 ts 파일이 12.5초로 이루어져 있는데 해당 다시보기의 경우 스트림 ts 3개가 병합된 구조이다.)</p><p><br></p><p><strong>이를 이용하여 PID 0번 부분 단위로 쪼개면 무결성의 ts 파일 조각으로 분리해 낼 수 있다. (PID258 부분을 보면 해당 ts 파일이 몇번째 index 인지 확인할 수 있다.)</strong></p><p><br></p><p>또한 실녹이나 다시보기 다운시 ts파일을 바이너리로 합치는 방법을 사용한다면 위의 내용을 사용할 수 있다.&nbsp;</p><p>예를들어 1시간 짜리 다시보기 영상을 다운로드 한다면 0.ts~359.ts 파일을 바이너리로 합친 형태인데 이는 index-0000000000.ts~0000001799.ts 를 바이너리로 합친 형태라는 의미이며 <span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;"><strong>특정 부분을 무결성을 유지하며 영상을 잘라내거나&nbsp;</strong></span><strong>여러 방식의 녹화본이 있을 경우 무결한 다시보기를 만드는 용도로 사용할 수 있다.</strong></p><p><br></p><p><strong>또한 실시간 녹화를 할때 앞부분이 짤리는 경우가 있는데 풀버전 기준 정확히 어느 정도가 짤려있는지 확인이 가능합니다.</strong></p><p><br></p><p>또한 실녹시 하드웨어 또는 인터넷 문제로 실녹이 깨지는 경우가 있는데 실제로 영상을 확인해보면 중간의 ts 파일이 누락된 상태로 병합된 경우가 있다. (streamlink 기준으로 하나의 영상이더라도 다운로드 메세지가 여러번 출력된 경우 일부가 누락되었을 가능성이 있다.) 그러한 경우 바이너리로 <strong>병합된 ts 파일을 PID0 을 기준으로 나눈 후 PID258에서 index-xxxxxxxxxx.ts 부분을 나열해보면 몇번 index가 누락 되어있는지 까지 파악이 가능하다.</strong></p><p><span style="font-family: -apple-system, BlinkMacSystemFont, NanumBarunGothic, NanumGothic, system-ui, sans-serif; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: left; text-indent: 0px; text-transform: none; word-spacing: 0px; background-color: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline; float: none;">&nbsp;</span></p><p><strong>※ MPEG-2 TS packet analyser</strong></p><p><br></p><p><a href="https://ac.namu.la/20220420sac2/e4bb07785e957377eb20d8072127b3752830ef9115444886ca9dde6639aa5f3a.png?expires=1708083451&amp;key=2SiR_764QCaNLvPrMvCkog&amp;type=orig" target="_blank"><img style="width:852px" src="./twitch ts 파일 분석 - 트위치개발 채널_files/e4bb07785e957377eb20d8072127b3752830ef9115444886ca9dde6639aa5f3a.png" width="1018" height="466" loading="lazy"></a></p><p>추가적으로 MPEG-2 TS packet analyser 프로그램을 사용하면 위와같이 매 ts 패킷의 바이너리에 담긴 데이터를 확인할수 있다.</p><p><br></p><p><a href="https://ac.namu.la/20220420sac/8d83886b02f2792627df66c5b4e3cf067223821c012e22e89404cdc97dfe4f43.png?expires=1708083451&amp;key=JEx9orVswCewoO6OE-DJng&amp;type=orig" target="_blank"><img src="./twitch ts 파일 분석 - 트위치개발 채널_files/8d83886b02f2792627df66c5b4e3cf067223821c012e22e89404cdc97dfe4f43.png" width="408" height="342" loading="lazy"></a></p><p>또한 해당 프로그램에서 ts 파일의 pid 통계를 확인할 수 있다.</p></div>
+<div class="ad" id="DB9VA6tC2dGCEb3V" data-ad-t="DB9VA6tC2dGCEb3V" data-ad-b="t"></div>
+</div>
+<div class="vote-area" id="vote">
+<form class="itemForm" id="rateUpForm">
+<button class="item " id="rateUp">
+Like! <small id="ratingUp">4</small><br>
+<small>(<span class="ion-help-circled"></span> <span id="ratingUpIp">0</span>)</small>
+</button>
+</form>
+<form class="itemForm" id="rateDownForm">
+<button class="item " id="rateDown">
+Dislike! <small id="ratingDown">0</small><br>
+<small>(<span class="ion-help-circled"></span> <span id="ratingDownIp">0</span>)</small>
+</button>
+</form>
+<div class="recaptcha-privacy mt-2">
+This site is protected by reCAPTCHA and<br> the Google
+<a href="https://policies.google.com/privacy">Privacy Policy</a> and
+<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+</div>
+</div>
+<div class="article-menu mt-2"><a class="btn btn-arca btn-sm float-left" id="imageToZipBtn"><span class="ion-android-download"></span><span class="d-sm-inline d-md-none"> Save image</span><span class="d-none d-md-inline"> Download all images</span></a>
+<a href="https://arca.live/b/twitchdev/48875066#" class="btn btn-arca btn-sm ml-2 float-right d-none" id="articleShareBtn" title="Share"><span class="ion-android-share"></span> Share</a>
+<div class="clearfix"></div>
+</div>
+<div class="article-comment position-relative" id="comment">
+<div class="title">
+<span class="icon ion-chatboxes"></span>
+Comment
+<a class="btn btn-arca btn-sm float-right btn-arca-article-write" href="https://arca.live/b/twitchdev/write" title="Write Article"><span class="ion-compose"></span>&nbsp;Write Article</a>
+</div>
+<div class="list-area">
+<div class="comment-wrapper">
+<div class="comment-item" id="c_211489416">
+<div class="content">
+<div class="info-row clearfix">
+<span class="user-info author"><a href="https://arca.live/u/@%EB%B0%94%EB%B0%94%EB%8A%94%EB%B0%94%EB%B0%94%EC%95%BC" data-filter="바바는바바야">바바는바바야</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/21535c3c0ec762da1c2bec72346305e8e4547e9211b3aca0be97d340da41ac8b.png">
+</div>
+<div class="right">
+<time datetime="2022-04-20T17:42:17.000Z" data-format="Y-m-d H:i:s">2022-04-20 18:42:17</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="211489416"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message has-more">
+<div class="text"><pre class="">트위치의 각종 api들을 빠르고 쉽게 사용할 수 있도록 만들면 좋겠다 싶어서 지난번에 TwitchDev 를 만들어 배포까지 했고 저번주 쯤에 근황으로 업데이트를 예고했던 바가 있습니다. 
+
+코딩은 그냥 시간이 남을때나 심심할때 마다 하는 취미로 하고있었는데 해당 업데이트 예고 이후 오늘도 코딩을 해볼까가 아니라 해야한다가 되니 책임감이 들어 취미를 일로 느끼기 시작한 것 같습니다. 
+
+자기전에 내일은 꼭 해야지 라는 생각만 매일 반복하고 막상 일어나면 코딩이 손에 잡히지 않습니다. 
+
+따라서 TwitchDev 업데이트는 나중에 하고싶어지면 업데이트 하는것으로 미루도록 하겠습니다. 
+
+업데이트를 기다리신 분이 계시다면 죄송합니다.</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_211505141">
+<div class="content">
+<div class="info-row clearfix">
+<span class="user-info"><a href="https://arca.live/u/@%EA%B3%A0%EA%B5%AC%EB%A7%88%ED%8C%8C%EC%9D%B4" data-filter="고구마파이">고구마파이</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed" title="고정닉"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/ba6aff1b52f294888a01da2e8433e0f3">
+</div>
+<div class="right">
+<time datetime="2022-04-20T21:06:34.000Z" data-format="Y-m-d H:i:s">2022-04-20 22:06:34</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="211505141"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="text"><pre class="">궁금했지만 지식(과 노력)이 부족해서 하지 못했던 게 여기서 이루어지고 있네요. 잘 봤습니다.</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_211574331">
+<div class="content">
+<div class="info-row clearfix">
+<span class="user-info"><a href="https://arca.live/u/@%EA%B3%A0%EA%B5%AC%EB%A7%88%ED%8C%8C%EC%9D%B4" data-filter="고구마파이">고구마파이</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed" title="고정닉"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/ba6aff1b52f294888a01da2e8433e0f3">
+</div>
+<div class="right">
+<time datetime="2022-04-21T03:34:48.000Z" data-format="Y-m-d H:i:s">2022-04-21 04:34:48</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="211574331"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="text"><pre class="">어쩌면 네트워크 등의 실시간 녹화 환경이 다소 불안정할 때 kuiki771이 잘 터지는 이유가, 타 채널에 비해 2배 이상으로 긴 세그먼트를 가지고 있어서일지도 모르겠네요.</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_212966580">
+<div class="content">
+<div class="info-row clearfix">
+<a href="https://arca.live/b/twitchdev/48875066?#c_211574331"><span class="ion-android-arrow-dropup-circle"></span></a>
+<span class="user-info"><a href="https://arca.live/u/@ffmpeg" data-filter="ffmpeg">ffmpeg</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed" title="고정닉"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/409956a969e018395d9ed6efdaa491541dd8febd8b8358353886665c5eb0f32a.png">
+</div>
+<div class="right">
+<time datetime="2022-04-25T06:34:56.000Z" data-format="Y-m-d H:i:s">2022-04-25 07:34:56</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="212966580"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="text"><pre class="">방송 송출 설정이 참 궁금한 스트입니다.</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_212005975">
+<div class="content">
+<div class="info-row clearfix">
+<span class="user-info"><a href="https://arca.live/u/@%ED%95%98%EC%9D%B4%EB%B8%8C/12950086" data-filter="하이브#12950086">하이브</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-android-person" title="계정"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/8a155ff2b3d8e14a5d88f82aafb451aa">
+</div>
+<div class="right">
+<time datetime="2022-04-22T08:11:48.000Z" data-format="Y-m-d H:i:s">2022-04-22 09:11:48</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="212005975"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="emoticon-wrapper">
+<video loading="lazy" autoplay="" loop="" muted="" playsinline="" class="emoticon" src="//ac.namu.la/20220108s1/4b1d670a43a851605e4d24a879d2e0b46c4997ce3112ea2b8c2dd386a0cf179b.mp4?expires=1709254800&amp;key=B4m6_K1XN1t5JKT9UT3a0w" poster="//ac.namu.la/20220108s1/4b1d670a43a851605e4d24a879d2e0b46c4997ce3112ea2b8c2dd386a0cf179b.thumbnail.jpg?expires=1709254800&amp;key=iG4mCa0SyWBo73GC-by_cg" data-id="43233708" width="100" height="100" data-version="v1"></video>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_212851621">
+<div class="content">
+<div class="info-row clearfix">
+<span class="user-info"><a href="https://arca.live/u/@%E3%85%87%E3%85%87/57468774" data-filter="ㅇㅇ#57468774">ㅇㅇ</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-android-person" title="계정"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/e7e1002a5b043148ea6877790f9fae5b">
+</div>
+<div class="right">
+<time datetime="2022-04-24T21:19:56.000Z" data-format="Y-m-d H:i:s">2022-04-24 22:19:56</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="212851621"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="text"><pre class="">와 대단하시네요. 근데 왜 사람마다(대부분은 같지만) ts길이가 다를까요? 개인의 송출 설정에 따라 달라지는거려나요</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_212851884">
+<div class="content">
+<div class="info-row clearfix">
+<a href="https://arca.live/b/twitchdev/48875066?#c_212851621"><span class="ion-android-arrow-dropup-circle"></span></a>
+<span class="user-info author"><a href="https://arca.live/u/@%EB%B0%94%EB%B0%94%EB%8A%94%EB%B0%94%EB%B0%94%EC%95%BC" data-filter="바바는바바야">바바는바바야</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/21535c3c0ec762da1c2bec72346305e8e4547e9211b3aca0be97d340da41ac8b.png">
+</div>
+<div class="right">
+<time datetime="2022-04-24T21:26:33.000Z" data-format="Y-m-d H:i:s">2022-04-24 22:26:33</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="212851884"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="text"><pre class="">저는 스트리머가 아니기에 방송 설정을 해본적이 없어서 해당 부분은 알고있는게 없습니다만, 송출 설정에 따라 달라지는 것 같습니다.</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_303595040">
+<div class="content">
+<div class="info-row clearfix">
+<span class="user-info"><a href="https://arca.live/u/@%EA%B8%B0%EB%A1%9D%EA%B0%80" data-filter="기록가">기록가</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed" title="고정닉"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/18bca21885412a8373cc309697a4344d">
+</div>
+<div class="right">
+<time datetime="2022-12-31T11:37:14.000Z" data-format="Y-m-d H:i:s">2022-12-31 11:37:14</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="303595040"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="text"><pre class="">와드</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_315066761">
+<div class="content">
+<div class="info-row clearfix">
+<span class="user-info"><a href="https://arca.live/u/@%ED%9E%88%ED%9E%88%EB%AA%BB%EA%B0%80" data-filter="히히못가">히히못가</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed" title="고정닉"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/a4d0c5298e3ff3f63d544df2d30fcc45">
+</div>
+<div class="right">
+<time datetime="2023-01-28T15:42:57.000Z" data-format="Y-m-d H:i:s">2023-01-28 15:42:57</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="315066761"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message has-more">
+<b class="modified">*Modified</b>
+<div class="text"><pre class="">지금은 알고 계실 수도 있는데, 사람마다 ts길이가 다른 건 키프레임 설정 차이인 걸로 알아요. 트위치에서 권장하는 건 2초라서 대부분 스트리머가 키프레임 간격을 2초로 넣고 방송하는 걸로 알고 있습니다.
+가끔 키프레임 간격을 자동으로 놓고 송출하는 스트리머가 있는데, 그러면 obs가 자체적으로 키프레임을 조절해 4.167초 같은 이상한 숫자가 나오기도 합니다. kuiki의 송출 설정이 아마 자동인 것으로 추정돼요.
+키프레임 간격을 1초로 놓고 송출하는 스트리머도 있습니다. 거의 1~2년 전 쯤 sahyang 다시보기가 그랬습니다. 그러다가 중간에 세팅 갈아엎으면서 다시 2초로 돌아가서 지금은 분석해보면 2초로 나옵니다.</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+<div class="comment-wrapper">
+<div class="comment-item" id="c_315156761">
+<div class="content">
+<div class="info-row clearfix">
+<a href="https://arca.live/b/twitchdev/48875066?#c_315066761"><span class="ion-android-arrow-dropup-circle"></span></a>
+<span class="user-info author"><a href="https://arca.live/u/@%EB%B0%94%EB%B0%94%EB%8A%94%EB%B0%94%EB%B0%94%EC%95%BC" data-filter="바바는바바야">바바는바바야</a><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span>
+<div class="avatar">
+<img loading="lazy" alt="User gravatar image" src="./twitch ts 파일 분석 - 트위치개발 채널_files/21535c3c0ec762da1c2bec72346305e8e4547e9211b3aca0be97d340da41ac8b.png">
+</div>
+<div class="right">
+<time datetime="2023-01-29T00:57:44.000Z" data-format="Y-m-d H:i:s">2023-01-29 00:57:44</time>
+<span class="sep"></span>
+<a href="https://arca.live/b/twitchdev/48875066#" class="reply-link" data-best="" data-target="315156761"><span class="icon ion-reply"></span> Reply</a>
+</div>
+</div>
+<div class="message">
+<div class="text"><pre class="">obs 설정은 따로 공부해본적이 없어서 전혀 몰랐습니다. 좋은 정보 감사합니당</pre></div>
+<div class="btn btn-sm btn-more">Unfold ▼</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<a class="newcomment-alert w-100 d-none fetch-comment" href="https://arca.live/b/twitchdev/48875066#comment">
+<span class="text">새로운 댓글이 달렸습니다!</span>
+</a>
+</div>
+<form class="reply-form write" id="commentForm" action="https://arca.live/b/twitchdev/48875066/comment" method="post" data-bitwarden-watching="1">
+<input type="hidden" name="_csrf" value="Kkv6opbX-kNvoAo3d5WaFzRemZG0AitdKEK4">
+<input type="hidden" name="contentType" value="text">
+<div class="reply-form__container">
+<div class="reply-form__info">
+<div class="reply-form__user-info">
+<span class="replay-form-title">Write a Comment</span>
+<div class="reply-form__user-info__avatar">
+<img src="./twitch ts 파일 분석 - 트위치개발 채널_files/fcbcb68370a89654696dff0d514cd1d4" loading="lazy" title="avatar">
+</div>
+<input class="reply-form-user-input" type="text" name="nickname" placeholder="Name" value="ㅇㅇ" required="required" tabindex="100">
+<input class="reply-form-user-input" type="password" name="password" placeholder="Password" value="o9yO2XG8" required="required" tabindex="101">
+</div>
+<div class="reply-form-button-container">
+<button class="reply-form-voice-button btn-voicecmt" type="button" tabindex="105">
+<span class="ion-mic-a"></span>
+<span class="text">&nbsp;Voice comment</span>
+</button>
+<button class="reply-form-arcacon-button btn-namlacon" type="button" tabindex="104">
+<span class="ion-android-happy"></span>
+<span class="text">Arcacon</span>
+</button>
+</div>
+</div>
+<div class="namlacon" style="display: none;">
+<div class="thumbnails"></div>
+<div class="emoticons"></div>
+</div>
+<div class="voice-comment">
+<div class="upload-alert-view">
+<div class="progress">
+<div class="progress-bar upload-progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+</div>
+<p id="voice-comment-progress-text">Uploading</p>
+</div>
+<div class="player-view">
+<div class="progress-wrapper">
+<div class="timestamp">
+<span class="text-current-time">0</span>Seconds
+</div>
+<div class="progress">
+<div class="progress-bar record-progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+</div>
+</div>
+<div class="text-center audio-player" style="display: none;">
+<audio controls="" src="">This browser does not support audio players.</audio>
+</div>
+<div class="control-btns text-center">
+<a class="btn btn-sm btn-arca btn-record ion-record">&nbsp;Record</a>
+<a class="btn btn-sm btn-primary btn-stop ion-stop" style="display: none;">&nbsp;Stop</a>
+<a class="btn btn-sm btn-danger ion-close btn-cancel" style="display: none;">&nbsp;Delete</a>
+<button type="button" id="voiceCommentUploadButton" class="btn btn-sm btn-primary btn-cmt btn-voicecomment-upload" style="display: none;"><span class="ion-arrow-up-a"></span>&nbsp;업로드</button>
+</div>
+</div>
+</div>
+<div class="reply-form-textarea-wrapper">
+<textarea class="reply-form-textarea" name="content" maxlength="8000" required="required" tabindex="102" placeholder=""></textarea>
+<div class="reply-form__submit-button-wrapper">
+<button class="reply-form__submit-button" type="submit" id="commentFormButton" tabindex="103">Write</button>
+</div>
+</div>
+</div>
+<div class="recaptcha-privacy recaptcha-privacy-align-right mb-2">
+This site is protected by reCAPTCHA and the Google
+<a href="https://policies.google.com/privacy">Privacy Policy</a> and
+<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+</div>
+</form>
+</div>
+</div>
+<div id="boardBtns"></div>
+<div class="btns-board">
+<div class="float-right">
+<a class="btn btn-sm btn-arca btn-arca-article-write" href="https://arca.live/b/twitchdev/write" title="Write Article"><span class="ion-compose"></span>&nbsp;Write Article</a>
+</div>
+<div class="float-left">
+<a class="btn btn-sm btn-arca float-left" href="https://arca.live/b/twitchdev">
+<span class="ion-android-list"></span>
+<span>전체글</span>
+</a>
+<a class="btn btn-sm btn-danger float-left" href="https://arca.live/b/twitchdev?mode=best">
+<span class="ion-star"></span>
+<span>개념글</span>
+</a>
+<select class="form-control select-list-type" name="sort">
+<option value="">Order of registration</option>
+<option value="rating">Order of recommendation (24 hours)</option>
+<option value="rating72">Order of recommendation (3 days)</option>
+<option value="ratingAll">Liked order (all)</option>
+<option value="commentCount">Number of comments (3 days)</option>
+<option value="recentComment">Most recent comment</option>
+</select>
+<select class="form-control select-list-type" name="cut">
+<option value="">Recommended cut</option>
+<option>5</option>
+<option>10</option>
+<option>20</option>
+<option>30</option>
+<option>50</option>
+<option>70</option>
+<option>100</option>
+<option value="etc">Other</option>
+</select>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="included-article-list">
+<div class="ad" id="svQazR5NHC3xCQr3" data-ad-t="svQazR5NHC3xCQr3" data-ad-b="t"><div class="a-badge adservice"><span class="ion-information-circled"></span></div><a href="https://arca.live/api/v1/entry/RQGn4VQ8eYQsb3W?t=svQazR5NHC3xCQr3&amp;s=728" target="_blank" style="z-index: 1;"><img src="./twitch ts 파일 분석 - 트위치개발 채널_files/8ec6ef8fc4441ec630a4fa7b9db30ec0a2f4ffce4f21ea04628e0d6937d0f966.jpg"></a><div class="adinfo"><div class="d-flex justify-content-around align-items-center h-100 btn-adinfo-group"><button class="btn-adinfo btn-ad">광고 집행하기</button><button class="btn-adinfo btn-report">광고 신고하기</button></div><span class="ion-android-arrow-back adinfo-back"></span></div><div class="adreport"><div class="d-flex justify-content-around align-items-center h-100 report-group"><button class="btn-ad-report" data-value="태그 미부착">태그 미부착</button><button class="btn-ad-report" data-value="혐오">혐오</button><button class="btn-ad-report" data-value="저격">저격</button><button class="btn-ad-report" data-value="모금">모금</button><button class="btn-ad-report" data-value="공약">공약</button></div><span class="ion-android-arrow-back adreport-back"></span></div><div class="adreport-result-bg"><div class="adreport-result"><span class="adreport-result-text">신고가 처리되었습니다.</span></div></div></div>
+<div class="channel-visit-history" style="display: none;">
+<div class="channel-visit-history__normal">
+<div class="channel-visit-history__head">
+<span class="d-inline d-md-none">Recent</span>
+<span class="d-none d-md-inline">Recently visited channel</span>
+</div>
+<ul class="channel-visit-history__list"></ul>
+<div class="channel-visit-history__more-btn ion ion-android-menu"></div>
+</div>
+<div class="channel-visit-history__extend">
+<div class="channel-visit-history__head">
+<span>Recently visited channel</span>
+</div>
+<ul class="channel-visit-history__list"></ul>
+<div class="channel-visit-history__foot">
+<button type="button" class="channel-visit-history__clear-btn">
+Clear All
+<span class="ion ion-trash-b"></span>
+</button>
+</div>
+</div>
+</div>
+<div class="article-list">
+<div class="board-category-wrapper">
+<div class="board-category hide-scrollbar">
+<span class="item">
+<a href="https://arca.live/b/twitchdev" class="active">All</a>
+</span>
+<span class="item">
+<a href="https://arca.live/b/twitchdev?category=%EC%9D%BC%EB%B0%98">일반</a>
+</span>
+<span class="item">
+<a href="https://arca.live/b/twitchdev?category=%EC%A7%88%EB%AC%B8">질문</a>
+</span>
+<span class="item">
+<a href="https://arca.live/b/twitchdev?category=%EC%A0%95%EB%B3%B4">정보</a>
+</span>
+<span class="item">
+<a href="https://arca.live/b/twitchdev?category=%EB%89%B4%EC%8A%A4">뉴스</a>
+</span>
+<span class="item">
+<a href="https://arca.live/b/twitchdev?category=%EA%B0%9C%EB%B0%9C">개발</a>
+</span>
+<span class="item">
+<a href="https://arca.live/b/twitchdev?category=%EA%B3%B5%EC%A7%80">공지</a>
+</span>
+<span class="item">
+<a href="https://arca.live/b/twitchdev?category=%EC%9A%B4%EC%98%81">운영</a>
+</span>
+<div class="dummy"></div>
+</div>
+</div>
+<div class="list-table table">
+<div class="vrow column head d-none d-md-flex">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+Number
+</span>
+<span class="vcol col-title">
+Title
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author">Author</span>
+<span class="vcol col-time">Date created</span>
+<span class="vcol col-view">Views</span>
+<span class="vcol col-rate">Like</span>
+</div>
+</div>
+</div>
+<a class="vrow column notice notice-service" href="https://arca.live/b/twitchdev/6457546">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id"><b>Notice</b></span>
+<span class="vcol col-title">
+<b>아카라이브 모바일 앱 이용 안내(iOS/Android)</b>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="*ㅎㅎ">*ㅎㅎ</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed" title="고정닉"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2020-08-18T12:17:31.000Z" data-format="Q">2020.08.18</time>
+</span>
+<span class="vcol col-view">26036496</span>
+<span class="vcol col-rate d-none d-sm-inline">&nbsp;</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/53824501">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+통계 사이트 복구 관련 정리
+</span>
+<span class="info">
+<span class="comment-count">[3]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-07-05T22:50:52.000Z" data-format="Q">2022.07.05</time>
+</span>
+<span class="vcol col-view">129</span>
+<span class="vcol col-rate">2</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/53823720/#c_">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+</span>
+<span class="vcol col-title">
+<i class="text-muted">(No permission)</i>
+</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/53738012">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">정보</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+네이버 카페 아이디
+</span>
+<span class="info">
+<span class="comment-count">[1]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-07-04T12:03:13.000Z" data-format="Q">2022.07.04</time>
+</span>
+<span class="vcol col-view">166</span>
+<span class="vcol col-rate">3</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/53721462/#c_">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+</span>
+<span class="vcol col-title">
+<i class="text-muted">(No permission)</i>
+</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/53380698">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">일반</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+.
+</span>
+<span class="info">
+<span class="comment-count">[1]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-06-29T03:44:02.000Z" data-format="Q">2022.06.29</time>
+</span>
+<span class="vcol col-view">57</span>
+<span class="vcol col-rate">2</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/50143933">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+selfautopsy (2)
+</span>
+<span class="info">
+<span class="comment-count">[2]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-05-10T16:38:33.000Z" data-format="Q">2022.05.10</time>
+</span>
+<span class="vcol col-view">207</span>
+<span class="vcol col-rate">1</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/49780286">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+selfautopsy
+</span>
+<span class="info">
+<span class="comment-count">[4]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-05-04T15:54:32.000Z" data-format="Q">2022.05.04</time>
+</span>
+<span class="vcol col-view">439</span>
+<span class="vcol col-rate">3</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/49734010/#c_">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+</span>
+<span class="vcol col-title">
+<i class="text-muted">(No permission)</i>
+</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/49044662/#c_">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+</span>
+<span class="vcol col-title">
+<i class="text-muted">(No permission)</i>
+</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/49000897">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+채널의 최근 30일간 통계보는 api (twitchtracker)
+</span>
+<span class="info">
+<span class="comment-count">[1]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-22T14:40:55.000Z" data-format="Q">2022.04.22</time>
+</span>
+<span class="vcol col-view">230</span>
+<span class="vcol col-rate">2</span>
+</div>
+</div>
+</a>
+<a class="vrow column active" href="https://arca.live/b/twitchdev/48875066">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon ion-ios-photos-outline"></span>
+twitch ts 파일 분석
+</span>
+<span class="info">
+<span class="comment-count">[10]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-20T17:41:51.000Z" data-format="Q">2022.04.20</time>
+</span>
+<span class="vcol col-view">931</span>
+<span class="vcol col-rate">4</span>
+</div>
+</div>
+<div class="vrow-preview">
+
+                    <img loading="lazy" src="./twitch ts 파일 분석 - 트위치개발 채널_files/bd2859b4d608f0a90f1c421ccfe4432969c4826d0d43492693a4bddd2531aa64(1).png" alt="">
+                
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/48449242/#c_">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+</span>
+<span class="vcol col-title">
+<i class="text-muted">(No permission)</i>
+</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/48445714">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+자바스크립트 fetch 로 토큰 얻어오기
+</span>
+<span class="info">
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-14T10:15:55.000Z" data-format="Q">2022.04.14</time>
+</span>
+<span class="vcol col-view">89</span>
+<span class="vcol col-rate">1</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/48443078">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+토큰을 발급해주는 사이트
+</span>
+<span class="info">
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-14T09:46:49.000Z" data-format="Q">2022.04.14</time>
+</span>
+<span class="vcol col-view">119</span>
+<span class="vcol col-rate">1</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/48441129">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+UserToken
+</span>
+<span class="info">
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-14T09:24:54.000Z" data-format="Q">2022.04.14</time>
+</span>
+<span class="vcol col-view">87</span>
+<span class="vcol col-rate">2</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/48405989">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon ion-ios-photos-outline"></span>
+토큰
+</span>
+<span class="info">
+<span class="comment-count">[4]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-13T20:33:45.000Z" data-format="Q">2022.04.13</time>
+</span>
+<span class="vcol col-view">209</span>
+<span class="vcol col-rate">1</span>
+</div>
+</div>
+<div class="vrow-preview">
+
+                    <img loading="lazy" src="./twitch ts 파일 분석 - 트위치개발 채널_files/e9df065cfefd4fb0f66d9f7214f3555f041a2b811110e39ab2bcb1baf382aace.png" alt="">
+                
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/48381541">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+트위치 gql auth-token (cookie) 가져오기
+</span>
+<span class="info">
+<span class="comment-count">[1]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-13T11:40:33.000Z" data-format="Q">2022.04.13</time>
+</span>
+<span class="vcol col-view">317</span>
+<span class="vcol col-rate">2</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/47859410">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">일반</span>
+</span>
+<span class="title">
+<span class="media-icon ion-ios-photos-outline"></span>
+.
+</span>
+<span class="info">
+<span class="comment-count">[3]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-05T21:28:13.000Z" data-format="Q">2022.04.05</time>
+</span>
+<span class="vcol col-view">151</span>
+<span class="vcol col-rate">3</span>
+</div>
+</div>
+<div class="vrow-preview">
+
+                    <img loading="lazy" src="./twitch ts 파일 분석 - 트위치개발 채널_files/1a1f431f48bd8f30ca7d725113894cc6c0629bba851b2a508f00457283e3940f.png" alt="">
+                
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/47855628">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">정보</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+셀레니움 (selenium)
+</span>
+<span class="info">
+<span class="comment-count">[2]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-05T17:36:46.000Z" data-format="Q">2022.04.05</time>
+</span>
+<span class="vcol col-view">139</span>
+<span class="vcol col-rate">0</span>
+</div>
+</div>
+</a>
+<a class="vrow column" href="https://arca.live/b/twitchdev/47813754">
+<div class="vrow-inner">
+<div class="vrow-top">
+<span class="vcol col-id">
+<span></span>
+</span>
+<span class="vcol col-title">
+<span class="badges">
+<span class="badge badge-success">개발</span>
+</span>
+<span class="title">
+<span class="media-icon "></span>
+스트림 녹화
+</span>
+<span class="info">
+<span class="comment-count">[2]</span>
+</span>
+</span>
+</div>
+<div class="vrow-bottom">
+<span class="vcol col-author"><span class="user-info"><span data-filter="바바는바바야">바바는바바야</span><span class="zero-at-one-space">&nbsp;</span><span class="user-icon ion-checkmark-circled user-fixed user-manager" title="매니저"></span></span></span>
+<span class="vcol col-time">
+<time datetime="2022-04-05T08:39:46.000Z" data-format="Q">2022.04.05</time>
+</span>
+<span class="vcol col-view">182</span>
+<span class="vcol col-rate">3</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="btns-board">
+<div class="float-right">
+<a class="btn btn-sm btn-arca btn-arca-article-write" href="https://arca.live/b/twitchdev/write" title="Write Article"><span class="ion-compose"></span>&nbsp;Write Article</a>
+</div>
+<div class="float-left">
+<a class="btn btn-sm btn-arca float-left" href="https://arca.live/b/twitchdev">
+<span class="ion-android-list"></span>
+<span>전체글</span>
+</a>
+<a class="btn btn-sm btn-danger float-left" href="https://arca.live/b/twitchdev?mode=best">
+<span class="ion-star"></span>
+<span>개념글</span>
+</a>
+<select class="form-control select-list-type" name="sort">
+<option value="">Order of registration</option>
+<option value="rating">Order of recommendation (24 hours)</option>
+<option value="rating72">Order of recommendation (3 days)</option>
+<option value="ratingAll">Liked order (all)</option>
+<option value="commentCount">Number of comments (3 days)</option>
+<option value="recentComment">Most recent comment</option>
+</select>
+<select class="form-control select-list-type" name="cut">
+<option value="">Recommended cut</option>
+<option>5</option>
+<option>10</option>
+<option>20</option>
+<option>30</option>
+<option>50</option>
+<option>70</option>
+<option>100</option>
+<option value="etc">Other</option>
+</select>
+</div>
+</div>
+<div class="clearfix"></div>
+<form action="https://arca.live/b/twitchdev" method="get" class="form-inline search-form justify-content-end">
+<div class="input-group">
+<div class="input-group-prepend">
+<select class="form-control form-control-sm" name="target">
+<option value="all">All</option>
+<option value="title_content">Title/Content</option>
+<option value="title">Title</option>
+<option value="content">Content</option>
+<option value="nickname">Writer</option>
+<option value="comment">Comment</option>
+</select>
+</div>
+<span class="d-none" id="searchFormLabel">Keyword search form input</span>
+<input type="text" class="form-control form-control-sm" name="keyword" value="" aria-labelledby="searchFormLabel">
+<div class="input-group-append">
+<button class="btn btn-arca btn-sm" type="submit">Search</button>
+</div>
+</div>
+</form>
+<nav class="pagination-wrapper">
+<ul class="pagination justify-content-center">
+<li class="page-item"><a class="page-link" href="https://arca.live/b/twitchdev?p=" title="See Latest Post"><span class="ion-chevron-left"></span><span class="ion-chevron-left"></span></a></li>
+<li class="page-item">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2022-12-01T06%3A13%3A19Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2022-12-01T06:13:19Z" title="2022-12-01 06:13:19"><span class="ion-chevron-left"></span></a>
+</li>
+<li class="page-item">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2022-11-15T06%3A14%3A54Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2022-11-15T06:14:54Z" title="2022-11-15 06:14:54">-4</a>
+</li>
+<li class="page-item">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2022-11-13T14%3A29%3A16Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2022-11-13T14:29:16Z" title="2022-11-13 14:29:16">-3</a>
+</li>
+<li class="page-item">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2022-10-16T01%3A34%3A55Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2022-10-16T01:34:55Z" title="2022-10-16 02:34:55">-2</a>
+</li>
+<li class="page-item">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2022-09-01T03%3A42%3A43Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2022-09-01T03:42:43Z" title="2022-09-01 04:42:43">-1</a>
+</li>
+<li class="page-item active">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2022-07-05T22%3A50%3A52Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2022-07-05T22:50:52Z" title="2022-07-05 23:50:52"><time datetime="2022-07-05T22:50:52.000Z" data-format="y-m-d H:i">22-07-05 23:50</time></a>
+</li>
+<li class="page-item">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2022-04-04T13%3A51%3A09Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2022-04-04T13:51:09Z" title="2022-04-04 14:51:09">+1</a>
+</li>
+<li class="page-item">
+<a class="page-link" href="https://arca.live/b/twitchdev?before=2021-10-27T17%3A01%3A05Z" data-format="Y-m-d H:i:s" data-localdate="title" data-datetime="2021-10-27T17:01:05Z" title="2021-10-27 18:01:05"><span class="ion-chevron-right"></span></a>
+</li>
+<li class="page-item"><a class="page-link" href="https://arca.live/b/twitchdev?after=0" title="See First Post"><span class="ion-chevron-right"></span><span class="ion-chevron-right"></span></a></li>
+</ul>
+</nav>
+</div>
+</div>
+</article>
+<aside class="sidebar right-sidebar">
+<div class="sidebar-item">
+<div class="item-title">
+<a href="https://arca.live/b/hotdeal">핫딜 채널</a>
+</div>
+<div class="link-list">
+<a href="https://arca.live/b/hotdeal/99151748">
+<span class="leaf-info float-right"><time datetime="2024-02-16T09:29:46.000Z" data-format="m-d H:i">02-16 09:29</time></span>
+토스페이 알리익스프레스 최대 4.1프로 적립 (0원/무료)
+</a>
+<a href="https://arca.live/b/hotdeal/99155288">
+<span class="leaf-info float-right"><time datetime="2024-02-16T10:16:20.000Z" data-format="m-d H:i">02-16 10:16</time></span>
+HP 빅터스 15-fb2039AX AMD R5 호크포인트 게이밍 노트북 (969,000원/무료)
+</a>
+<a href="https://arca.live/b/hotdeal/99139114">
+<span class="leaf-info float-right"><time datetime="2024-02-16T06:30:44.000Z" data-format="m-d H:i">02-16 06:30</time></span>
+밥도둑푸드 만능양념파장 1+1 총2통 (10,900원/무료)
+</a>
+<a href="https://arca.live/b/hotdeal/99150614">
+<span class="leaf-info float-right"><time datetime="2024-02-16T09:14:25.000Z" data-format="m-d H:i">02-16 09:14</time></span>
+플러스라인 자석 도어클로저 (16,810원/무료)
+</a>
+<a href="https://arca.live/b/hotdeal/99146256">
+<span class="leaf-info float-right"><time datetime="2024-02-16T08:14:56.000Z" data-format="m-d H:i">02-16 08:14</time></span>
+Quillo 퀼로 스페인 포테이토칩 1박스 10개입 130g (23,800원/무료)
+</a>
+</div>
+</div>
+<div class="sidebar-item">
+<div class="item-title">
+<a href="https://arca.live/b/twitchdev?mode=best">이 채널의 개념글</a>
+</div>
+<div class="link-list">
+</div>
+</div>
+<div class="sticky-container">
+<div class="ad" id="zLcnqmwwq6UCKGT7" data-ad-t="zLcnqmwwq6UCKGT7" data-ad-b="t"><img src="./twitch ts 파일 분석 - 트위치개발 채널_files/empty_ad_sidebar.svg" width="100%" height="100%"></div>
+<div class="sidebar-item" id="newsRank">
+<div class="item-title">
+나무뉴스 주요
+</div>
+<div class="link-list"><a href="https://namu.news/article/2241149" title="전공의 사직에 수술 연기·축소 잇따라…&#39;의료대란&#39; 현실로(종합)" target="_blank">전공의 사직에 수술 연기·축소 잇따라…'의료대란' 현실로(종합)</a><a href="https://namu.news/article/2241119" title="간첩 혐의 &#39;충북동지회&#39; 3명 징역 12년…법정구속(종합)" target="_blank">간첩 혐의 '충북동지회' 3명 징역 12년…법정구속(종합)</a><a href="https://namu.news/article/2241136" title="검찰, &#39;30억대 투자사기&#39; 전청조 징역 12년에 항소" target="_blank">검찰, '30억대 투자사기' 전청조 징역 12년에 항소</a><a href="https://namu.news/article/2241106" title="은퇴 빼고 다 하는 박유천, 이번엔 SNS 개설 &#39;뻔뻔&#39; [엑&#39;s 이슈]" target="_blank">은퇴 빼고 다 하는 박유천, 이번엔 SNS 개설 '뻔뻔' [엑's 이슈]</a><a href="https://namu.news/article/2241118" title="비디오게임에서 누드 보다 폭력에 관대한 이유" target="_blank">비디오게임에서 누드 보다 폭력에 관대한 이유</a></div>
+<div class="sidebar-by">
+</div>
+</div>
+<div class="ad fold" id="KukqM2YNNauQkT22" data-ad-t="KukqM2YNNauQkT22" data-ad-b="t"></div>
+</div>
+</aside>
+</div>
+<footer class="footer">
+<p>Live v2&nbsp;<small class="text-muted">(aada07e8)</small><span class="sep"></span><a href="mailto:support@arca.live">Contáctenos</a><span class="sep"></span><a href="mailto:arcalive@safefra.me">Ads</a><span class="sep"></span><a href="https://arca.live/policy">POLÍTICA DE PRIVACIDAD Y REGLAS DE USO</a></p>
+<p>Operado por umanle S.R.L.<span class="sep"></span>Hecho con &lt;3 en Asunción, República del Paraguay</p>
+<p class="footer-current-users"><span class="ion-ios-people"></span>&nbsp;<span id="arcalive-current-users">51675</span>Persons</p>
+</footer>
+<ul class="nav-control"><li><span class="ion-ios-gear"></span></li>
+<li>
+<a href="https://arca.live/b/twitchdev/48875066#comment" id="goCommentBtn" class="sm" aria-label="Go to comment area">
+<span class="ion-chatboxes"></span>
+</a>
+</li>
+<li>
+<a href="https://arca.live/b/twitchdev/48875066#boardBtns" id="goListBtn" class="sm" aria-label="Go to the post list area">
+<span class="ion-android-list"></span>
+</a>
+</li>
+<li>
+<a href="https://arca.live/b/twitchdev/48875066#top" id="goTopBtn" title="Go to top">
+<span class="ion-arrow-up-b"></span>
+</a>
+</li>
+<li>
+<a href="https://arca.live/b/twitchdev/48875066#bottom" id="goBottomBtn" title="Go to the bottom">
+<span class="ion-arrow-down-b"></span>
+</a>
+</li>
+</ul>
+<div id="toastbox" class="position-fixed p-3" style="display: none;"></div>
+</div>
+<div id="bottom"></div>
+<div class="modal" id="shortcutHelpModal" tabindex="-1" aria-labelledby="shortcutHelpModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="shortcutHelpModalLabel">Shortcut help</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">
+<h5 class="mb-3">On site</h5>
+<dl class="row mb-4">
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">1</span> ~ <span class="badge badge-secondary">0</span></dt>
+<dd class="col-sm-10">Go to subscription channel</dd>
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">R</span></dt>
+<dd class="col-sm-10">Refresh</dd>
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">?</span></dt>
+<dd class="col-sm-10">Shortcut help</dd>
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">T</span></dt>
+<dd class="col-sm-10">Back to top</dd>
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">W</span></dt>
+<dd class="col-sm-10">Write article</dd>
+</dl>
+<h5 class="mb-3">In the post</h5>
+<dl class="row">
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">A</span></dt>
+<dd class="col-sm-10">Previous post</dd>
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">S</span></dt>
+<dd class="col-sm-10">Next post</dd>
+<dt class="col-sm-2 text-right"><span class="badge badge-secondary">C</span></dt>
+<dd class="col-sm-10">Comment</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<template id="microModalTemplate"></template>
+<template id="statefulSpinnerTemplate"></template>
+<script src="./twitch ts 파일 분석 - 트위치개발 채널_files/layout.js" type="text/javascript"></script>
+<script type="text/javascript">window.LivePageAd()</script>
+<script src="./twitch ts 파일 분석 - 트위치개발 채널_files/csscolorparser.js" type="text/javascript"></script>
+<script src="./twitch ts 파일 분석 - 트위치개발 채널_files/board.min.js" type="text/javascript"></script>
+<script src="./twitch ts 파일 분석 - 트위치개발 채널_files/article.min.js" type="text/javascript"></script>
+<script type="text/javascript">articleLoad({"slug":"twitchdev","articleId":48875066,"_csrf":"Kkv6opbX\u002DkNvoAo3d5WaFzRemZG0AitdKEK4","gravatar":"//secure.gravatar.com/avatar/fcbcb68370a89654696dff0d514cd1d4?d\u003Dretro\u0026f\u003Dy","isAnonymous":false,"user":false,"recaptcha":"6LcDuIwUAAAAAABqGMfC8KCTje\u002DxWbQu9bhvIO3K","nickname":"ㅇㅇ","password":"o9yO2XG8","vctoken":"1e5d43a24cb5054d"})</script>
+<link href="./twitch ts 파일 분석 - 트위치개발 채널_files/froala_style.min.css" rel="stylesheet" type="text/css">
+<script defer="" src="./twitch ts 파일 분석 - 트위치개발 채널_files/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;856527dfcb0f76dd&quot;,&quot;version&quot;:&quot;2024.2.0&quot;,&quot;token&quot;:&quot;aaccdfd5f94149e6ab6e88598c5d1142&quot;}" crossorigin="anonymous"></script>
+
+
+</body><div><template shadowrootmode="open"><link href="chrome-extension://jffbochibkahlbbmanpmndnhmeliecah/picture-in-picture.css" type="text/css" rel="stylesheet"><div class="vivaldi-picture-in-picture-container initial"><input type="button" class="vivaldi-picture-in-picture-button" aria-label="picture-in-picture-button"></div></template></div></html>
