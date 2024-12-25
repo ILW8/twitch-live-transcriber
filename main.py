@@ -3,6 +3,8 @@ import json
 import logging
 import os
 import socket
+import threading
+import time
 from json import JSONDecodeError
 
 import streamlink
@@ -67,10 +69,59 @@ class SegmentWithMeta:
                 f"meta_timestamp={datetime.timedelta(seconds=self.txxx_meta['stream_offset'])}>")
 
 
+class NetworkAudioSender:
+    # assuming f32le pcm audio
+    bytes_per_sample = 4
+
+    def __init__(self, host: str, port: int, sample_rate : int = 16_000):
+        self.sample_rate = sample_rate
+        self.step_length = 200  # ms
+        self.time_since_last_data = None
+        self.steps_buffer = []
+        self.partial_step_buffer = bytearray()
+
+    def __enter__(self):
+        logger.info("connecting to whisper server...")
+        # self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # self.sock.connect((host, port))
+        logger.info("connected to whisper server")
+        self.stop = False
+        self.sender_thread = threading.Thread(target=self.send_audio_thread)
+        self.sender_thread.start()
+
+    def __exit__(self, exc_type, exc_value, tb):
+        # self.sock.close()
+        self.stop = True
+        self.sender_thread.join()
+
+    def queue_audio(self, audio_data: bytes):
+        assert(len(audio_data) % self.bytes_per_sample == 0)
+        logger.debug(f"queued audio data: {len(audio_data)} bytes ({len(audio_data) // self.bytes_per_sample} samples)")
+
+        if len(self.partial_step_buffer) > 0:
+            audio_data = self.partial_step_buffer + audio_data
+            self.partial_step_buffer.clear()
+
+        # split audio into steps
+        offset = 0
+
+        # exclude the end if it there isn't enough data to fill a whole step
+        while offset <= len(audio_data) - ((self.step_length * self.sample_rate) // 1000) * self.bytes_per_sample:
+            step = audio_data[offset:offset + self.step_length * self.bytes_per_sample]
+            self.steps_buffer.append(step)
+            offset += len(step)
+
+    def send_audio_thread(self):
+        while not self.stop:
+            print("hello, this is the sender thread")
+            time.sleep(1)
+
+
 class CircularSegmentBuffer:
-    def __init__(self, max_segment_count=5):
+    def __init__(self, network_audio = None, max_segment_count=5):
         self.segments: [SegmentWithMeta] = []
         self.max_segment_count = max_segment_count
+        self.network_audio = network_audio
 
     def append(self, segment: bytes):
         if len(self.segments) >= self.max_segment_count:
@@ -89,8 +140,8 @@ class CircularSegmentBuffer:
         if "Packet corrupt" in (stderr := stderr.decode('utf-8')) or 'matches no streams' in stderr:
             return
 
-        if send_to_whisper:
-            sock.sendall(stdout)
+        if self.network_audio is not None:
+            self.network_audio.queue_audio(stdout)
 
     def pop(self):
         return self.segments.pop(0)
@@ -103,7 +154,7 @@ def ts_get_pid(packet: bytes) -> int:
     return ((packet[1] & 0x1F) << 8) | (packet[2] & 0xFF)
 
 def ts_get_payload_start_bit(packet: bytes):
-    return (ts_packet[0] & 0x40) >> 6
+    return (packet[0] & 0x40) >> 6
 
 
 def parse_pat(packet: bytes):
@@ -164,18 +215,9 @@ def parse_pmt(packet: bytes):
 https://arca.live/b/twitchdev/48875066
 https://web.archive.org/save/https://arca-live.translate.goog/b/twitchdev/48875066?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp
 """
-if __name__ == '__main__':
-    load_dotenv()
 
-    send_to_whisper = os.getenv("SEND_TO_WHISPER", None) is not None
 
-    # connect to whisper_streaming tcp server
-    if send_to_whisper:
-        logger.info("connecting to whisper server...")
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.connect(("127.0.0.1", 9727))
-        logger.info("connected to whisper server")
-
+def main(network_audio: NetworkAudioSender|None = None):
     options = {
         "low-latency": True,
     }
@@ -184,14 +226,13 @@ if __name__ == '__main__':
 
     logger.info("fetching stream info...")
     streams = streamlink.streams("https://twitch.tv/btmc", options=options)
+
     logger.info("preparing audio stream...")
     audio_stream = streams.get("audio_only", None)
     assert audio_stream is not None
 
     pmt_pid = None
-
-    segments_queue = CircularSegmentBuffer()
-
+    segments_queue = CircularSegmentBuffer(network_audio)
     with audio_stream.open() as stream_handle:
         logger.info("opened audio stream")
         segment_buffer = bytearray()
@@ -252,3 +293,13 @@ if __name__ == '__main__':
                 segments_queue.append(bytes(segment_buffer))
                 segment_buffer.clear()
             segment_buffer += ts_packet
+
+
+if __name__ == '__main__':
+    load_dotenv()
+
+    if os.getenv("SEND_TO_WHISPER", None) is not None:
+        with NetworkAudioSender("127.0.0.1", 9727) as net_audio_sender:
+            main(net_audio_sender)
+    else:
+        main()
