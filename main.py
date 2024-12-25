@@ -169,26 +169,31 @@ if __name__ == '__main__':
 
     send_to_whisper = os.getenv("SEND_TO_WHISPER", None) is not None
 
+    # connect to whisper_streaming tcp server
+    if send_to_whisper:
+        logger.info("connecting to whisper server...")
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect(("127.0.0.1", 9727))
+        logger.info("connected to whisper server")
+
     options = {
         "low-latency": True,
     }
     if os.getenv("TWITCH_TOKEN") is not None:
         options["api-header"] = [("Authorization", f"OAuth {os.getenv('TWITCH_TOKEN')}")]
 
+    logger.info("fetching stream info...")
     streams = streamlink.streams("https://twitch.tv/btmc", options=options)
+    logger.info("preparing audio stream...")
     audio_stream = streams.get("audio_only", None)
     assert audio_stream is not None
-
-    # connect to whisper_streaming tcp server
-    if send_to_whisper:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.connect(("127.0.0.1", 9728))
 
     pmt_pid = None
 
     segments_queue = CircularSegmentBuffer()
 
     with audio_stream.open() as stream_handle:
+        logger.info("opened audio stream")
         segment_buffer = bytearray()
         ts_packet_buffer = bytearray()
         while True:
