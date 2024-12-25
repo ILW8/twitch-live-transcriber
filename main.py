@@ -111,8 +111,13 @@ class NetworkAudioSender:
             self.steps_buffer.append(step)
             offset += len(step)
 
+        # TODO: handle partial steps
+        if offset != len(audio_data):
+            print("partial step")
+
     def send_audio_thread(self):
         while not self.stop:
+            # TODO: send audio data
             print("hello, this is the sender thread")
             time.sleep(1)
 
@@ -140,6 +145,7 @@ class CircularSegmentBuffer:
         if "Packet corrupt" in (stderr := stderr.decode('utf-8')) or 'matches no streams' in stderr:
             return
 
+        # TODO: this is never getting called for some reason
         if self.network_audio is not None:
             self.network_audio.queue_audio(stdout)
 
